@@ -8,7 +8,71 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <RelativePanel Margin="10" BorderBrush="Gray" BorderThickness="2" Padding="12" CornerRadius="10">
+    <StackPanel Margin="10">
+        <!--选项组-->
+        <StackPanel Orientation="Horizontal">
+            <RadioButton Content="选项1" GroupName="grp1" Margin="10"/>
+            <RadioButton Content="选项2" GroupName="grp1" Margin="10"/>
+            <RadioButton Content="选项3" GroupName="grp1" Margin="10"/>
+        </StackPanel>
+        
+        <!--开关按钮-->
+        <ToggleButton Content="开关按钮" Margin="10"/>
+        <ToggleSwitch Header="开关" OnContent="打开" OffContent="关闭" Margin="10"/>
+
+        <StackPanel Orientation="Horizontal" Margin="20 10">
+            <!--滑动条-->
+            <Slider x:Name="slider1" Header="选择一个值" Minimum="10" Maximum="100" Value="20" Margin="10"
+                Width="300" HorizontalAlignment="Left"/>
+            <TextBox Margin="10" FontSize="40"
+                     Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <CheckBox x:Name="chk1" Content="接受条款" Margin="5"/>
+            <Button Content="注册" IsEnabled="{Binding ElementName=chk1,Path=IsChecked}"/>
+        </StackPanel>
+        
+        
+        <!--日期指定-->
+        <CalendarDatePicker PlaceholderText="选择一个日期" Header="活动日期" Margin="10"
+                            DateFormat="{}{year.full}-{month.integer}-{day.integer}"/>
+        
+        <!--进度提示-->
+        <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left">
+            <ProgressBar Value="30" Width="300" Margin="10"/>
+            <ProgressBar IsIndeterminate="True" Width="300" Margin="10"/>
+            <ProgressRing IsActive="True" Width="150" Margin="10"/>
+        </StackPanel>
+        
+        <!--按钮上方提示-->
+        <Button Content="鼠标移过来"
+                ToolTipService.ToolTip="点击这里，开始执行\r\n第二行会显示吗"/>
+        
+        <!--按钮上方弹出窗体-->
+        <Button Content="点击弹出窗体" Margin="10 20">
+            <Button.Flyout>
+                <!--<Flyout>
+                    <StackPanel Padding="10">
+                        <TextBlock>这是消息的第一行</TextBlock>
+                        <TextBlock>第二行</TextBlock>
+                        <Button Content="确定" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Flyout>-->
+
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="菜单1"/>
+                    <MenuFlyoutSeparator/>
+                    <ToggleMenuFlyoutItem Text="勾选项"/>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+
+    </StackPanel>
+    
+    
+    
+    <!--<RelativePanel Margin="10" BorderBrush="Gray" BorderThickness="2" Padding="12" CornerRadius="10">
         <Rectangle x:Name="rcRed" Fill="Red" Width="200" Height="200"/>
         <Rectangle x:Name="rcBlue" Fill="Blue" Width="200" Height="200" RelativePanel.RightOf="rcRed"/>
         <Rectangle Fill="Orange" 
@@ -16,7 +80,7 @@
                    RelativePanel.AlignRightWith="rcBlue"
                    Height="200" 
                    RelativePanel.Below="rcRed"/>
-    </RelativePanel>
+    </RelativePanel>-->
     
     
     
