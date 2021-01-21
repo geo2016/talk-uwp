@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="AppListView.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppListView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="TmplItem">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Title}" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Age}" Width="80" FontWeight="Bold"/>
+                <Image Source="/data/500元代金券.png" Height="35" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0 10">
+            <Button Content="新增项" Click="btnAdd" Margin="0 0 20 0"/>
+            <Button Content="修改第一条的名字还有年龄" Click="btnChangeFirstRow" Margin="0 0 20 0"/>
+        </StackPanel>
+        <ListView x:Name="lv1" Grid.Row="1" SelectionMode="Extended"
+                 AllowDrop="True" CanDragItems="True" CanReorderItems="True" ItemTemplate="{StaticResource TmplItem}"/>
+    </Grid>
+</Page>
