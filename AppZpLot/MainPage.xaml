@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="AppZpLot.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppZpLot"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Storyboard x:Name="rotate1" RepeatBehavior="Forever">
+            <DoubleAnimation Duration="0:0:0.5" To="360"
+                             Storyboard.TargetProperty="Angle"
+                             Storyboard.TargetName="rt"/>
+        </Storyboard>
+        
+        <!--背景音乐-->
+        <MediaElement x:Name="media1" Source="/Data/lotting.mp3" MediaEnded="media1_MediaEnded" AutoPlay="False"/>
+    </Page.Resources>
+    
+    <RelativePanel Padding="50">
+        <!--转盘图片和指针-->
+        <Image x:Name="zp" Tapped="zpLot" Source="/Data/zp.png" 
+               RenderTransformOrigin=".5,.5"
+               RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rt"/>
+            </Image.RenderTransform>
+        </Image>
+        <Image Source="/Data/arrow.png" Margin="20 0" RelativePanel.RightOf="zp" Stretch="None" RelativePanel.AlignVerticalCenterWith="zp" />
+
+        
+        <!--背景图-->
+        <RelativePanel.Background>
+            <ImageBrush ImageSource="/Data/bg.jpg"/>
+        </RelativePanel.Background>
+
+        <!--右键菜单-->
+        <RelativePanel.ContextFlyout>
+            <MenuFlyout>
+                <MenuFlyoutItem Text="退出程序" Click="AppExit"/>
+            </MenuFlyout>
+        </RelativePanel.ContextFlyout>
+    </RelativePanel>
+</Page>
