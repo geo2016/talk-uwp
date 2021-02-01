@@ -40,6 +40,8 @@
         <RelativePanel.ContextFlyout>
             <MenuFlyout>
                 <MenuFlyoutItem Text="退出程序" Click="AppExit"/>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem Text="版本1>2"/>
             </MenuFlyout>
         </RelativePanel.ContextFlyout>
     </RelativePanel>
