@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +26,27 @@ namespace AppWindowObj
         public MainPage()
         {
             this.InitializeComponent();
+
+            Debug.WriteLine("MainPage Created");
+
+            Application.Current.EnteredBackground += Current_EnteredBackground;
+            Application.Current.Resuming += Current_Resuming;
+            Application.Current.Suspending += Current_Suspending;
+        }
+
+        private void Current_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        {
+            Debug.WriteLine("Current_Suspending");
+        }
+
+        private void Current_Resuming(object sender, object e)
+        {
+            Debug.WriteLine("Current_Resuming");
+        }
+
+        private void Current_EnteredBackground(object sender, Windows.ApplicationModel.EnteredBackgroundEventArgs e)
+        {
+            Debug.WriteLine("Current_EnteredBackground");
         }
 
         private void GoPage1(object sender, RoutedEventArgs e)

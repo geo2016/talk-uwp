@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -16,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace AppWindowObj
+namespace AppYear2021
 {
     /// <summary>
     /// 提供特定于应用程序的行为，以补充默认的应用程序类。
@@ -31,29 +30,6 @@ namespace AppWindowObj
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            this.EnteredBackground += App_EnteredBackground;
-            this.LeavingBackground += App_LeavingBackground;
-        }
-        /// <summary>
-        /// 界面初始化的操作。检测可视化的元素是否准备就绪。
-        /// 如果有长时间的操作，通过主界面进入后，进行提示。或者用flashScreen
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void App_LeavingBackground(object sender, LeavingBackgroundEventArgs e)
-        {
-            Debug.WriteLine("App_LeavingBackground");
-        }
-
-        /// <summary>
-        /// 停止界面绘制、动画。断开IO访问；保存用户数据
-        /// 替代此前的suspending事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
-        {
-            Debug.WriteLine("App_EnteredBackground");
         }
 
         /// <summary>
@@ -63,28 +39,6 @@ namespace AppWindowObj
         /// <param name="e">有关启动请求和过程的详细信息。</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            // ** UIElement 对象
-            //Window.Current.Content = new TextBlock()
-            //{
-            //    Text = "Talk UWP",
-            //    FontSize = 50,
-            //    HorizontalAlignment = HorizontalAlignment.Center,
-            //    VerticalAlignment = VerticalAlignment.Center,
-            //};
-
-            // ** Page对象
-            //Window.Current.Content = new MainPage();
-
-            // ** Frame对象
-            var frame = new Frame();
-            Window.Current.Content = frame;
-
-            frame.Navigate(typeof(MainPage));
-
-            // 激活当前窗口。可以显示到前台，并响应输入
-            Window.Current.Activate();
-
-            /*
             Frame rootFrame = Window.Current.Content as Frame;
 
             // 不要在窗口已包含内容时重复应用程序初始化，
@@ -117,7 +71,6 @@ namespace AppWindowObj
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
             }
-            */
         }
 
         /// <summary>
@@ -141,7 +94,6 @@ namespace AppWindowObj
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
-
             deferral.Complete();
         }
     }
